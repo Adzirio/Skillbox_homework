@@ -60,7 +60,9 @@ def test_create_parking(client):
 @pytest.mark.parking
 def test_enter_parking(client):
     client_resp = client.post(
-        "/clients", json={"name": "Test", "surname": "Testov", "credit_card": "1234"}
+        "/clients", json={"name": "Test",
+                          "surname": "Testov",
+                          "credit_card": "1234"}
     )
     parking_resp = client.post(
         "/parkings",
@@ -76,7 +78,8 @@ def test_enter_parking(client):
     parking_id = parking_resp.get_json()["id"]
 
     response = client.post(
-        "/client_parkings", json={"client_id": client_id, "parking_id": parking_id}
+        "/client_parkings", json={"client_id": client_id,
+                                  "parking_id": parking_id}
     )
     assert response.status_code == 201
 
@@ -84,7 +87,9 @@ def test_enter_parking(client):
 @pytest.mark.parking
 def test_leave_parking(client):
     client_resp = client.post(
-        "/clients", json={"name": "Test", "surname": "Testov", "credit_card": "1234"}
+        "/clients", json={"name": "Test",
+                          "surname": "Testov",
+                          "credit_card": "1234"}
     )
     parking_resp = client.post(
         "/parkings",
@@ -100,10 +105,12 @@ def test_leave_parking(client):
     parking_id = parking_resp.get_json()["id"]
 
     client.post(
-        "/client_parkings", json={"client_id": client_id, "parking_id": parking_id}
+        "/client_parkings", json={"client_id": client_id,
+                                  "parking_id": parking_id}
     )
     response = client.delete(
-        "/client_parkings", json={"client_id": client_id, "parking_id": parking_id}
+        "/client_parkings", json={"client_id": client_id,
+                                  "parking_id": parking_id}
     )
     assert response.status_code == 200
 
