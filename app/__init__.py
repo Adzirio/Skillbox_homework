@@ -1,6 +1,8 @@
-from flask import Flask, g
 from contextlib import contextmanager
-from .db import init_db, create_tables, get_session
+
+from flask import Flask, g
+
+from .db import create_tables, get_session, init_db
 from .routes import bp
 
 
@@ -18,7 +20,7 @@ def create_app():
 
     @app.teardown_appcontext
     def teardown_session(exception=None):
-        if hasattr(g, 'session'):
+        if hasattr(g, "session"):
             g.session.close()
 
     return app
