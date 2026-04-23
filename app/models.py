@@ -1,5 +1,7 @@
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Boolean, UniqueConstraint
+from sqlalchemy import (Boolean, Column, DateTime, ForeignKey, Integer, String,
+                        UniqueConstraint)
 from sqlalchemy.orm import relationship
+
 from .db import Base
 
 
@@ -12,7 +14,9 @@ class Client(Base):
     credit_card = Column(String(50), nullable=True)
     car_number = Column(String(50), nullable=True)
 
-    client_parkings = relationship("ClientParking", back_populates="client", cascade="all, delete-orphan")
+    client_parkings = relationship(
+        "ClientParking", back_populates="client", cascade="all, delete-orphan"
+    )
 
 
 class Parking(Base):
@@ -24,7 +28,9 @@ class Parking(Base):
     count_places = Column(Integer, nullable=False)
     count_available_places = Column(Integer, nullable=False)
 
-    client_parkings = relationship("ClientParking", back_populates="parking", cascade="all, delete-orphan")
+    client_parkings = relationship(
+        "ClientParking", back_populates="parking", cascade="all, delete-orphan"
+    )
 
 
 class ClientParking(Base):
