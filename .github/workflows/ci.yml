@@ -34,7 +34,7 @@ jobs:
     
     - name: MyPy (types)
       run: |
-        mypy app/ tests/ --install-types --non-interactive
+        mypy app/ tests/
     
     - name: Pytest (tests)
       run: pytest tests/ -v --cov=app/ --cov-report=xml --cov-report=term-missing
