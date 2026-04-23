@@ -27,7 +27,7 @@ jobs:
       run: black --check --diff .
     
     - name: isort (imports)
-      run: isort --check-only --diff .
+      run: isort --check-only --diff --profile black .
     
     - name: Flake8 (style)
       run: flake8 .
