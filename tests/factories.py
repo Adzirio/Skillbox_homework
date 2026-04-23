@@ -25,6 +25,7 @@ def parking_factory():
         "opened": fake.boolean(chance_of_getting_true=70),
         "count_places": count_places,
         "count_available_places": max(
-            0, count_places - fake.pyint(min_value=0, max_value=count_places // 2)
+            0, count_places - fake.pyint(min_value=0,
+                                         max_value=count_places // 2)
         ),
     }
