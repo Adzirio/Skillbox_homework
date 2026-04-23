@@ -43,8 +43,7 @@ class Parking(Base):
 class ClientParking(Base):
     __tablename__ = "client_parking"
     __table_args__ = (
-        UniqueConstraint("client_id", "parking_id", 
-                         name="unique_client_parking"),
+        UniqueConstraint("client_id", "parking_id", name="unique_client_parking"),
     )
 
     id = Column(Integer, primary_key=True)
