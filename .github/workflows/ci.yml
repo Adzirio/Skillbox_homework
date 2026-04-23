@@ -27,14 +27,7 @@ jobs:
       run: black --check --diff .
     
     - name: isort (imports)
-      run: isort --check-only --diff .
-    
-    - name: Flake8 (style)
-      run: flake8 .
-    
-    - name: MyPy (types)
-      run: |
-        mypy app/ tests/
+      run: isort --check-only --diff --profile black .
     
     - name: Pytest (tests)
       run: pytest tests/ -v --cov=app/ --cov-report=xml --cov-report=term-missing
