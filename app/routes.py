@@ -1,9 +1,7 @@
 from datetime import datetime
 
 from flask import Blueprint, g, jsonify, request
-from sqlalchemy.exc import IntegrityError
 
-from .db import session
 from .models import Client, ClientParking, Parking
 
 bp = Blueprint("api", __name__)
