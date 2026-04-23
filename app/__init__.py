@@ -1,5 +1,3 @@
-from contextlib import contextmanager
-
 from flask import Flask, g
 
 from .db import create_tables, get_session, init_db
