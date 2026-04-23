@@ -1,9 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
+from sqlalchemy.orm import declarative_base, scoped_session, sessionmaker
 
 Base = declarative_base()
 session = None
 engine = None
+
 
 def init_db(uri: str):
     global engine, session
@@ -14,8 +15,10 @@ def init_db(uri: str):
     Base.query = session.query_property()
     return engine
 
+
 def create_tables():
     Base.metadata.create_all(bind=engine)
+
 
 def get_session():
     return sessionmaker(autocommit=False, autoflush=False, bind=engine)()
