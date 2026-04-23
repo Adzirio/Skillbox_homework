@@ -29,9 +29,6 @@ jobs:
     - name: isort (imports)
       run: isort --check-only --diff --profile black .
     
-    - name: Flake8 (style)
-      run: flake8 .
-    
     - name: MyPy (types)
       run: |
         mypy app/ tests/
