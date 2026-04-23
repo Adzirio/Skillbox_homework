@@ -59,31 +59,57 @@ def test_create_parking(client):
 
 @pytest.mark.parking
 def test_enter_parking(client):
-    client_resp = client.post("/clients", json={"name": "Test", "surname": "Testov", "credit_card": "1234"})
-    parking_resp = client.post("/parkings",
-                               json={"address": "Test", "opened": True, "count_places": 5, "count_available_places": 5})
+    client_resp = client.post(
+        "/clients", json={"name": "Test", "surname": "Testov", "credit_card": "1234"}
+    )
+    parking_resp = client.post(
+        "/parkings",
+        json={
+            "address": "Test",
+            "opened": True,
+            "count_places": 5,
+            "count_available_places": 5,
+        },
+    )
 
     client_id = client_resp.get_json()["id"]
     parking_id = parking_resp.get_json()["id"]
 
-    response = client.post("/client_parkings", json={"client_id": client_id, "parking_id": parking_id})
+    response = client.post(
+        "/client_parkings", json={"client_id": client_id, "parking_id": parking_id}
+    )
     assert response.status_code == 201
 
 
 @pytest.mark.parking
 def test_leave_parking(client):
-    client_resp = client.post("/clients", json={"name": "Test", "surname": "Testov", "credit_card": "1234"})
-    parking_resp = client.post("/parkings",
-                               json={"address": "Test", "opened": True, "count_places": 5, "count_available_places": 5})
+    client_resp = client.post(
+        "/clients", json={"name": "Test", "surname": "Testov", "credit_card": "1234"}
+    )
+    parking_resp = client.post(
+        "/parkings",
+        json={
+            "address": "Test",
+            "opened": True,
+            "count_places": 5,
+            "count_available_places": 5,
+        },
+    )
 
     client_id = client_resp.get_json()["id"]
     parking_id = parking_resp.get_json()["id"]
 
-    client.post("/client_parkings", json={"client_id": client_id, "parking_id": parking_id})
-    response = client.delete("/client_parkings", json={"client_id": client_id, "parking_id": parking_id})
+    client.post(
+        "/client_parkings", json={"client_id": client_id, "parking_id": parking_id}
+    )
+    response = client.delete(
+        "/client_parkings", json={"client_id": client_id, "parking_id": parking_id}
+    )
     assert response.status_code == 200
 
+
 ######################
+
 
 def test_create_client_factory(client):
     """Дубликат test_create_client с Factory Boy"""
