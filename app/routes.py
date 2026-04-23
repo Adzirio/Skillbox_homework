@@ -84,7 +84,8 @@ def create_parking():
         return (
             jsonify(
                 {
-                    "error": "address, count_places and count_available_places are required"
+                    "error": "address, count_places "
+                             "and count_available_places are required"
                 }
             ),
             400,
