@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-        cache: 'pip'  # Встроенный кэш pip
+        cache: 'pip'
     
     - name: Install dependencies
       run: |
@@ -29,9 +29,15 @@ jobs:
     - name: isort (imports)
       run: isort --check-only --diff --profile black .
     
+    - name: Flake8 (style)
+      run: flake8 .
+    
+    - name: MyPy (types)
+      run: mypy app/ tests/
+    
     - name: Pytest (tests)
       run: pytest tests/ -v --cov=app/ --cov-report=xml --cov-report=term-missing
-    
+ 
     - name: Upload coverage
       uses: codecov/codecov-action@v4
       with:
